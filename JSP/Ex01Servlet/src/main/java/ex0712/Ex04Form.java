@@ -15,12 +15,14 @@ public class Ex04Form extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Post 방식 인코딩 -> 데이터 꺼내기 직전에 진행
+		request.setCharacterEncoding("UTF-8");
 		
 		// 데이터 수집(파라미터 수집), 사용
 		// 데이터가 요청에 담겨있어, request객체로부터 꺼낸다.
 		// 파라미터 수집 : 요청 담긴 파라미터(데이터)를 꺼내서 변수에 담는 과정
 		//				.getParameter("input name")
-		request.setCharacterEncoding("UTF-8");
+		
 		String data = request.getParameter("data");
 		
 		// request.getParamete의 리턴이 String이기 때문에,
