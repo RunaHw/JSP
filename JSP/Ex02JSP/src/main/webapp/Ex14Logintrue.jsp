@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-	String id = request.getParameter("ID");
+	String id = (String)session.getAttribute("ID");
 %>
 	<div><h1><%=id %>님 환영합니다!</h1></div>
 	<a href="#">로그아웃</a>
