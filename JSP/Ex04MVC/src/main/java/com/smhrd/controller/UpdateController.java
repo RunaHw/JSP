@@ -6,45 +6,47 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.smhrd.dao.MemberDAO;
 import com.smhrd.entity.Member;
 
-@WebServlet("/join")
-public class JoinController extends HttpServlet {
+@WebServlet("/update")
+public class UpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String gender = request.getParameter("gender");
-		String nick = request.getParameter("nick");
 		String tel = request.getParameter("tel");
+		String nick = request.getParameter("nick");
 		
-		// id ~ tel까지 Member로 묶기
-		Member member = new Member(id, pw, gender, nick, tel);
 		
-		// 2. 기능실행
-		// 입력받은 정보를 DB-MEMBER 테이블에 저장 >> DAO
-		// DAO의 기능을 실행
+		Member member = new Member();
+		member.setId(id);
+		member.setPw(pw);
+		member.setGender(gender);
+		member.setTel(tel);
+		member.setNick(nick);
+		
 		MemberDAO dao = new MemberDAO();
-		int cnt = dao.join(member);
+		int cnt = dao.update(member);
 		
-		// 3. View 선택
-		// 만약 회원가입이 성공했다면, main.jsp로, 실패했다면 join.jsp
-		String url = "";
 		if(cnt > 0) {
-			// 이미 이동하는 Controller가 있는 jsp의 경우 해당 Controller로 이동
-			url = "goMain";
-		} else {
-			url = "goJoin";
+			System.out.println("수정 성공");
+			// session에 있는 사용자 정보를 member로 수정
+			HttpSession session = request.getSession();
+			session.setAttribute("user", member);
+		}else {
+			System.out.println("수정 실패");
 		}
 		
+		String url = "goMain";
 		response.sendRedirect(url);
-		
 		
 	}
 

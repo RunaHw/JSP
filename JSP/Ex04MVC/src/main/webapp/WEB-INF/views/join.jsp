@@ -17,7 +17,7 @@
 				 여<input type="radio" name ="gender" value="여"> <br>
 		NICK : <input type = "text" name="nick"> <br>
 		TEL : <input type="tel" name="tel"> <br>
-		<input type="submit" value="로그인">
+		<input type="submit" value="회원가입">
 	</form>
 	
 </body>

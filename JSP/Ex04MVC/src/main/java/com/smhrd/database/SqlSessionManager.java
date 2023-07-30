@@ -28,13 +28,7 @@ public class SqlSessionManager {
 	// Connection Pool을 가지고 있는 주체
 	private static SqlSessionFactory sqlSessionFactory;
 
-	 public static SqlSessionFactory getSqlSessionFactory() {
-		return sqlSessionFactory;
-	}
 
-	public static void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-		SqlSessionManager.sqlSessionFactory = sqlSessionFactory;
-	}
 
 	static{ 
 		 // 초기화 블럭 : 생성자가 실행될 때, 자동으로 실행
@@ -46,5 +40,13 @@ public class SqlSessionManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	 public static SqlSessionFactory getSqlSessionFactory() {
+		return sqlSessionFactory;
+	}
+
+	public static void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+		SqlSessionManager.sqlSessionFactory = sqlSessionFactory;
 	}
 }
