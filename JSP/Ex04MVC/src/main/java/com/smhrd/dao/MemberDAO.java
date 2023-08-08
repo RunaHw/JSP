@@ -1,5 +1,10 @@
 package com.smhrd.dao;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -69,5 +74,14 @@ public class MemberDAO {
 		session.close();
 		return cnt;
 	}
+	
+	public List<Member> list() {
+		SqlSession session = factory.openSession(true);
+		
+		List<Member> list = session.selectList("list");
+		session.close();
+		return list;
+	}
+	
 	
 }

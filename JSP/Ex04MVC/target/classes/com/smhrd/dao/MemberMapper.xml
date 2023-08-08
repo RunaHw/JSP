@@ -48,7 +48,9 @@
 	</delete>
 
 
-
+	<select id="list" resultType="com.smhrd.entity.Member">
+		select * from MEMBER
+	</select>
 
 
 
